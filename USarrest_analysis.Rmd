@@ -1,0 +1,129 @@
+---
+title: "Document Title"
+author: "Author Name"
+date: "2024-09-21"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+### Project: US Crime Data Analysis with R
+
+This project explores crime statistics across U.S. states using the `USArrests` dataset, which contains data on murder, assault, and rape arrests per 100,000 residents in each state. We perform data transformation, summary calculations, and visualizations to gain insights into crime patterns across the U.S.
+
+Set working directory and call packages.
+
+```{r}
+# Check current working directory  
+getwd()
+# Set working directory
+
+# Call required packages, ex. "readxl", "tidyverse"
+if(!require(readxl)){install.packages("readxl")}
+if(!require(tidyverse)){install.packages("tidyverse")}
+
+```
+
+### Step 1: Load Data and Create Initial Object (`crime_wide`)
+
+-   **Description**: We begin by loading the built-in `USArrests` dataset and saving it as `crime_wide` to retain the original data structure. This dataset includes the following columns:
+
+    -   **Murder**: Number of murder arrests per 100,000 people.
+
+    -   **Assault**: Number of assault arrests per 100,000 people.
+
+    -   **UrbanPop**: Percentage of the population living in urban areas.
+
+    -   **Rape**: Number of rape arrests per 100,000 people.
+
+-   **Purpose**: This step sets up the dataset for further transformations and ensures we have a base copy for reference.
+
+```{data(USArrests)}
+crime_wide <- USArrests
+
+
+```
+
+### Step 2: Add State Names as a Column
+
+-   **Description**: We extract the row names (state names) from the `USArrests` dataset and add them as a new column called `State`. This creates a more complete data table with states labeled, which is essential for reference and grouping in subsequent analyses.
+
+-   **Purpose**: Adding the state names as a column allows for easier data manipulation and labeling in visualizations.
+
+```{r}
+State <- rownames(USArrests)
+crime_wide <- cbind(State, USArrests)
+
+```
+
+### Step 3: Transform Data from Wide to Long Format (`crime_long`)
+
+-   **Description**: We use the `pivot_longer` function to convert `crime_wide` from a wide format (with separate columns for `Murder`, `Assault`, and `Rape`) to a long format, where each row represents a crime type and its rate. We retain only the `State`, `Attribute` (crime type), and `Rate` columns for analysis.
+
+-   **Purpose**: The long format makes it easier to analyze and visualize crime rates across different crime types using summary statistics and visualizations.
+
+```{r}
+crime_long <- pivot_longer(crime_wide, 
+                           cols = c(Murder, Assault, Rape),
+                           names_to = "Attribute",
+                           values_to = "Rate") %>%
+              select(State, Attribute, Rate)
+```
+
+### Step 4: Calculate Summary Statistics (`crime_data`)
+
+-   **Description**: We calculate the following summary statistics for each crime type:
+
+    -   **sum_crime**: Total number of arrests across all states.
+
+    -   **mean_crime**: Average arrest rate across all states.
+
+    -   **sd_crime**: Standard deviation of arrest rates, indicating variability.
+
+-   **Purpose**: These statistics provide insights into the overall levels and variability of each crime type across the U.S., which can help identify trends or outliers.
+
+```{r}
+crime_data <- crime_long %>%
+              group_by(Attribute) %>%
+              summarise(sum_crime = sum(Rate), 
+                        mean_crime = mean(Rate), 
+                        sd_crime = sd(Rate))
+
+```
+
+### Step 5: Create a Boxplot by Crime Type
+
+-   **Description**: We generate a boxplot for each crime type (`Murder`, `Assault`, `Rape`) with specific customizations:
+
+    -   Color each crime type differently.
+
+    -   Set transparency to 0.5.
+
+    -   Show outliers as red dots.
+
+    -   Label the x-axis as "Crime Types" and position the legend at the bottom.
+
+-   **Purpose**: The boxplot helps visualize the distribution of arrest rates for each crime type, including median, quartiles, and outliers. This provides a clear comparison of crime rates across different categories.
+
+```{r}
+ggplot(crime_long, aes(x = Attribute, y = Rate, color = Attribute)) +
+  geom_boxplot(alpha = 0.5, outlier.colour = "red") +
+  labs(x = "Crime Types", y = "") +
+  theme(legend.position = "bottom")
+
+```
+
+### Step 6: Create Histograms by Crime Type
+
+-   **Description**: We create separate histograms for each crime type, showing the frequency distribution of arrest rates. Each histogram uses a bin width of 30, and the plots are arranged vertically by crime type using `facet_grid`.
+
+-   **Purpose**: These histograms provide a detailed view of the distribution of arrest rates for each crime type, helping to identify patterns and concentration areas.
+
+```{r}
+ggplot(crime_long, aes(x = Rate, fill = Attribute)) +
+  geom_histogram(binwidth = 30) +
+  facet_grid(Attribute ~ .)
+
+```
+
+==== End-of-File ====
