@@ -17,14 +17,31 @@ My data science and analytics projects
     Description: Use pivot tables to analyze and visualize service level metrics, providing insights into performance and areas for improvement.
 
 2. SQL
-
-
+    - Restaurant database schema diagram(DB diagram)
+    - SQL queries for restaurant database management
+    
 3. R programing
-4. Python programing
-5. Looker G3
-6. Linear Regression Model using caret
+   - game pao_ying_choob
+   - pizza_restaurant
+   - 
+4. data transformations
+   - database restaurant
+   - NYC flight
+     
+5. data tidy
+
+6. data visualization
+7. machine learning (caret)
+     
+5. Python programing
+   -python programing
+   -linear regression
+   -logistics regression
+   -naive bayes
+   -decision tree
+   
+   
 
 ## Contact Me 
-reach out to me at nutchanonkhongkeaw@gmail.com
+Reach out to me at nutchanonkhongkeaw@gmail.com
 
-## Image
