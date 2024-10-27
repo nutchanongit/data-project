@@ -1,0 +1,113 @@
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+## Project Overview
+
+This project utilizes the `gapminder` dataset to analyze travel behavior trends, focusing on country demographics and economic indicators over time. Using data manipulation and visualization techniques in R, we explore metrics such as life expectancy, population, GDP, and more. Set working directory and call packages.
+
+------------------------------------------------------------------------
+
+## Preliminary Setup
+
+We first set up the working environment by loading the required libraries.
+
+```{r}
+# Check current working directory  
+getwd()
+# Set working directory
+
+# Call required packages, ex. "readxl", "tidyverse"
+if(!require(readxl)){install.packages("readxl")}
+if(!require(tidyverse)){install.packages("tidyverse")}
+if(!require(gapminder)){install.packages("gapminder")}
+
+```
+
+## Analysis Steps
+
+### Step 1: Load Data
+
+**Objective**: Load the `gapminder` dataset and create an object called `gap_data`. This dataset includes data on various countries, with factors like continent, year, life expectancy (`lifeExp`), population (`pop`), and GDP per capita (`gdpPercap`).
+
+```{r}
+# Load gapminder data and create gap_data object
+gap_data <- gapminder
+```
+
+### Step 2: Count Asian Countries and Calculate Median Life Expectancy for 2002
+
+**Objective**: Count the number of countries in Asia and calculate the median life expectancy for all Asian countries in 2002. We store these values in `n_countries` and `lifeExp_med`, respectively.
+
+```{r}
+# Count number of countries in Asia
+n_countries <- gap_data %>%
+  filter(continent == "Asia") %>%
+  summarise(n_countries = n_distinct(country))
+
+# Calculate median life expectancy for Asia in 2002
+lifeExp_med <- gap_data %>%
+  filter(continent == "Asia", year == 2002) %>%
+  summarise(lifeExp_med = median(lifeExp, na.rm = TRUE))
+
+```
+
+### Step 3: Summarize Population and Total GDP by Continent for 2002
+
+**Objective**: Create a summary table showing the total population (`pop`) and economic size (`Total_GDP`) by continent for the year 2002. We then sort the data by economic size.
+
+```{r}
+# Summarize population and Total GDP by continent for 2002
+pop_data <- gap_data %>%
+  filter(year == 2002) %>%
+  group_by(continent) %>%
+  summarise(
+    total_pop = sum(pop),
+    Total_GDP = sum(pop * gdpPercap)
+  ) %>%
+  arrange(desc(Total_GDP))
+
+```
+
+### Step 4: GDP per Capita for Select Countries in Wide Format
+
+**Objective**: Extract GDP per capita data for China, Japan, and South Korea from 1980 onward and reshape it to a wide format, where each year is a row and countries are columns.
+
+```{r}
+# Filter data and pivot to wide format
+gdp_data <- gap_data %>%
+  filter(country %in% c("China", "Japan", "South Korea"), year >= 1980) %>%
+  select(year, country, gdpPercap) %>%
+  pivot_wider(names_from = country, values_from = gdpPercap)
+
+```
+
+### Step 5: Reorder Continent Levels by Frequency
+
+**Objective**: Create a new column, `continent.f`, with continent levels ordered by the number of observations, from least to most. We use `fct_infreq()` and `fct_rev()` to achieve this.
+
+```{r}
+# Create new column with reordered continent levels
+gap_data <- gap_data %>%
+  mutate(continent.f = fct_rev(fct_infreq(continent)))
+
+# Display continent levels by frequency
+levels(gap_data$continent.f)
+
+```
+
+### Step 6: Barplot of Country Counts by Continent
+
+**Objective**: Use `ggplot2` to create a barplot showing the number of countries in each continent, sorted from fewest to most. Each continent is represented with a distinct color from the "Spectral" palette, and no legend is displayed.
+
+```{r}
+# Create barplot for number of countries by continent
+ggplot(gap_data, aes(x = continent.f, fill = continent.f)) +
+  geom_bar() +
+  scale_fill_brewer(palette = "Spectral") +
+  labs(x = "Number of Countries", y = NULL) +
+  theme(legend.position = "none")
+
+```
+
+
