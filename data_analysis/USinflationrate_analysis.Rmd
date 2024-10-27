@@ -1,0 +1,118 @@
+---
+title:  "US Inflation Rate Analysis"
+output:
+  html_document:
+    df_print: paged
+---
+
+## Project Overview
+
+This project analyzes the inflation rate in the United States from 2000 to 2021, focusing on data manipulation, matrix operations, and visualization in R. The data is sourced from a CSV file stored in Dropbox, and the project aims to compute annual inflation averages and visualize the trends over time.
+
+## ==== First things first ====
+
+Set working directory and call packages.
+
+```{r}
+# Check current working directory  
+getwd()
+# Set working directory
+
+# Call required packages, ex. "readxl", "tidyverse"
+if(!require(readxl)){install.packages("readxl")}
+if(!require(tidyverse)){install.packages("tidyverse")}
+
+```
+
+## Analysis Steps
+
+### Step 1: Import Data
+
+**Objective**: Import U.S. inflation data from a CSV file in Dropbox and save it as `Inflation_US`. This file has no headers.
+
+```{r}
+# Import US inflation data from Dropbox
+Inflation_US <- read.csv("https://www.dropbox.com/s/fffeqzozmo1w00w/Inflation_US.csv?raw=1", header = FALSE)
+
+```
+
+### Step 2: Check Object Type
+
+**Objective**: Verify the data type of `Inflation_US`.
+
+```{r}
+# Check the data type of Inflation_US
+class(Inflation_US)
+
+```
+
+### Step 3: Convert to Matrix
+
+**Objective**: Create a matrix `Inflation_US_Matrix` with 22 rows, organized by row (byrow).
+
+```{r}
+# Convert data to matrix format
+Inflation_US_Matrix <- matrix(data = as.vector(Inflation_US), nrow = 22, byrow = TRUE)
+
+```
+
+### Step 4: Set Row and Column Names
+
+**Objective**: Assign row names (2000 to 2021) and column names (January to December) to `Inflation_US_Matrix`.
+
+```{r}
+# Set row names for years 2000 to 2021
+rownames(Inflation_US_Matrix) <- 2000:2021
+
+# Set column names using Thai month names
+colnames(Inflation_US_Matrix) <- c("มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", 
+                                   "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", 
+                                   "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม")
+
+# Display the matrix
+Inflation_US_Matrix
+
+```
+
+### Step 5: Calculate Annual Average Inflation
+
+**Objective**: Calculate the average inflation rate per year and store it in `Avg_Inflation_US`.
+
+```{r}
+# Calculate row means for each year
+Avg_Inflation_US <- rowMeans(Inflation_US_Matrix)
+
+```
+
+### Step 6: Add Annual Average Column to Matrix
+
+**Objective**: Add a new column to `Inflation_US_Matrix` with the annual average inflation rate and label it as "Annual_Average".
+
+```{r}
+# Convert matrix to data frame and add average inflation column
+Inflation_US_df <- as.data.frame(Inflation_US_Matrix)
+Inflation_US_df$Annual_Average <- Avg_Inflation_US
+
+```
+
+### Step 7: Plot Annual Average Inflation
+
+**Objective**: Create a line chart to visualize the annual average inflation rate from 2000 to 2021. The line is colored with RGB `#FF6666`, and has a thickness of 1 pt.
+
+```{r}
+# Prepare data frame for plotting
+plot_data <- data.frame(Year = 2000:2021, Avg_Inflation_US = Avg_Inflation_US)
+
+# Plot the annual average inflation rate
+ggplot(plot_data, aes(x = Year, y = Avg_Inflation_US)) +
+  geom_line(color = "#FF6666", size = 1) +
+  labs(x = "Year", y = "Average Inflation Rate (%)") +
+  theme_minimal()
+
+```
+
+Your name:Nutchanon
+
+Student ID:
+
+==== End-of-File ====
