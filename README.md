@@ -23,22 +23,26 @@ My data science and analytics projects
 3. R programing
    - game pao_ying_choob
    - pizza_restaurant
-   - 
+     
 4. data transformations
    - database restaurant
    - NYC flight
      
-5. data tidy
-
+5. data analysis
+    - Gapminder Analysis
+    - USarrest Analysis
+    - US Inflation Rate Analysis
+      
 6. data visualization
-7. machine learning (caret)
+
+7. machine learning
+    -House Price Prediction (Linear Regression)
+    -Quality Wine Prediction (Linear Regression) 
+    -Adult data (Logistic Regression)
+    -Titanic survivor (Logistic Regression)
+    -Text Classification (Naive Bayes)
      
-5. Python programing
-   -python programing
-   -linear regression
-   -logistics regression
-   -naive bayes
-   -decision tree
+
    
    
 
