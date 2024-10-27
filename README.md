@@ -36,11 +36,11 @@ My data science and analytics projects
 6. data visualization
 
 7. machine learning
-    -House Price Prediction (Linear Regression)
-    -Quality Wine Prediction (Linear Regression) 
-    -Adult data (Logistic Regression)
-    -Titanic survivor (Logistic Regression)
-    -Text Classification (Naive Bayes)
+    - House Price Prediction (Linear Regression)
+    - Quality Wine Prediction (Linear Regression)
+    - Adult data (Logistic Regression)
+    - Titanic survivor (Logistic Regression)
+    - Text Classification (Naive Bayes)
      
 
    
