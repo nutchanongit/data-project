@@ -44,7 +44,9 @@ My data science and analytics projects
     - DecisionTree [Open in Colab](https://colab.research.google.com/drive/1k1X5KNBaPDSOplbl-rojsueh9UCDaSTn#scrollTo=50227b2e)
     - Unsupervised Learning & Clustering
          K-means on DiagnotistData [Open in Colab](https://colab.research.google.com/drive/1F6W1gv1kJxvxiISvTeyhXnnDi3nf_ZP0#scrollTo=_)
+      
          Hierarchical clustering on StudentData [Open in Colab](https://colab.research.google.com/drive/1tCJBI7Ty4qUq8bxsLhjmSkTkyhjksGr7#scrollTo=WLSsMwV6F40y)
+      
          t-SNE on  [Open in Colab](https://colab.research.google.com/drive/19Jm-PrC1Y3B7bsgn6Ce9vXCvkZSfsPUl)
 
    
