@@ -36,16 +36,16 @@ My data science and analytics projects
 6. data visualization
 
 7. machine learning
-    - House Price Prediction (Linear Regression) https://colab.research.google.com/drive/1tCJBI7Ty4qUq8bxsLhjmSkTkyhjksGr7#scrollTo=WLSsMwV6F40y
-    - Quality Wine Prediction (Linear Regression)
-    - Adult data (Logistic Regression)
-    - Titanic survivor (Logistic Regression)
-    - Text Classification (Naive Bayes)
-    - DecisionTree
+    - House Price Prediction (Linear Regression)  [Open in Colab](https://colab.research.google.com/drive/13xaoHEV4IYgoA8JAP2Ezb8oMlcTDGogr?usp=sharing)
+    - Quality Wine Prediction (Linear Regression) [Open in Colab](https://colab.research.google.com/drive/18nG7dw-XAZiuNMA51t0G2pETRxrOEAiH?usp=sharing) 
+    - Adult data (Logistic Regression) [Open in Colab](https://colab.research.google.com/drive/1SdEwf5Z49JDN0FDzBhEfwYgvhLjk4rvv?usp=sharing)
+    - Titanic survivor (Logistic Regression) [Open in Colab](https://colab.research.google.com/drive/1TITZgqSs3KQTguuytcmfzOh1HJmvcwa_?usp=sharing)
+    - Text Classification (Naive Bayes) 
+    - DecisionTree [Open in Colab](https://colab.research.google.com/drive/1k1X5KNBaPDSOplbl-rojsueh9UCDaSTn#scrollTo=50227b2e)
     - Unsupervised Learning & Clustering
-         K-means on
-         Hierarchical clustering on 
-         t-SNE on 
+         K-means on DiagnotistData [Open in Colab](https://colab.research.google.com/drive/1F6W1gv1kJxvxiISvTeyhXnnDi3nf_ZP0#scrollTo=_)
+         Hierarchical clustering on StudentData [Open in Colab](https://colab.research.google.com/drive/1tCJBI7Ty4qUq8bxsLhjmSkTkyhjksGr7#scrollTo=WLSsMwV6F40y)
+         t-SNE on  [Open in Colab](https://colab.research.google.com/drive/19Jm-PrC1Y3B7bsgn6Ce9vXCvkZSfsPUl)
 
    
    
