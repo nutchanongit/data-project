@@ -48,7 +48,7 @@ My data science and analytics projects
       
          Hierarchical clustering on StudentData [Open in Colab](https://colab.research.google.com/drive/1tCJBI7Ty4qUq8bxsLhjmSkTkyhjksGr7#scrollTo=WLSsMwV6F40y)
       
-         t-SNE on  [Open in Colab](https://colab.research.google.com/drive/19Jm-PrC1Y3B7bsgn6Ce9vXCvkZSfsPUl)
+         t-SNE on MNIST data [Open in Colab](https://colab.research.google.com/drive/19Jm-PrC1Y3B7bsgn6Ce9vXCvkZSfsPUl)
 
    
    
