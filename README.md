@@ -36,12 +36,16 @@ My data science and analytics projects
 6. data visualization
 
 7. machine learning
-    - House Price Prediction (Linear Regression)
+    - House Price Prediction (Linear Regression) https://colab.research.google.com/drive/1tCJBI7Ty4qUq8bxsLhjmSkTkyhjksGr7#scrollTo=WLSsMwV6F40y
     - Quality Wine Prediction (Linear Regression)
     - Adult data (Logistic Regression)
     - Titanic survivor (Logistic Regression)
     - Text Classification (Naive Bayes)
-     
+    - DecisionTree
+    - Unsupervised Learning & Clustering
+         K-means on
+         Hierarchical clustering on 
+         t-SNE on 
 
    
    
